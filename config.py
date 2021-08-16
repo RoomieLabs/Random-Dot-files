@@ -1,3 +1,5 @@
+
+
 # Copyright (c) 2010 Aldo Cortesi
 # Copyright (c) 2010, 2014 dequis
 # Copyright (c) 2012 Randall Ma
@@ -199,8 +201,8 @@ for i in groups:
 
 
 def init_layout_theme():
-    return {"margin":6,
-            "border_width":4,
+    return {"margin":5,
+            "border_width":2,
             "border_focus": "#dc3131",
             "border_normal": "#4c566a"
             }
@@ -248,6 +250,7 @@ widget_defaults = init_widgets_defaults()
 def init_widgets_list():
     prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
     widgets_list = [
+             
                widget.GroupBox(font="FontAwesome",
                         fontsize =16,
                         margin_y = -1,
@@ -258,12 +261,13 @@ def init_widgets_list():
                         disable_drag = True,
                         active = colors[8],
                         inactive = colors[5],
-                        rounded = True,
+                        rounded = False,
                         highlight_method = "text",
-                        this_current_screen_border = colors[6],
+                        this_current_screen_border = colors[1],
                         foreground = colors[2],
                         background = colors[1]
                         ),
+
                widget.Sep(
                         linewidth = 1,
                         padding = 10,
@@ -274,6 +278,11 @@ def init_widgets_list():
                         font = "Noto Sans Bold",
                         foreground = colors[5],
                         background = colors[1]
+                         ),
+             widget.CurrentLayoutIcon(
+                        font = "TerminessTTF Nerd Font Medium",
+                        fontsize = 13,
+                        scale = .70
                         ),
                widget.Sep(
                         linewidth = 1,
@@ -294,6 +303,7 @@ def init_widgets_list():
                          background=colors[4],
                          padding = 0,
                          ),
+
                # widget.Sep(
                #          linewidth = 1,
                #          padding = 10,
@@ -321,14 +331,25 @@ def init_widgets_list():
                #          background = colors[1]
                #          ),
                # # do not activate in Virtualbox - will break qtile
+   widget.TextBox(
+                        font = "TerminessTTF Nerd Font Medium",
+                        fontsize = 13,
+                        text="  ",
+                        foreground=colors[5],
+                        background=colors[6],
+                        padding = 0
+                        ),
+
+           
                widget.ThermalSensor(
                          foreground = colors[5],
                          foreground_alert = colors[6],
-                         background = colors[3],
+                         background = colors[6],
                          metric = True,
                          padding = 3,
                          threshold = 80
                          ),
+               
                # # battery option 1  ArcoLinux Horizontal icons do not forget to import arcobattery at the top
                # widget.Sep(
                #          linewidth = 1,
@@ -344,28 +365,22 @@ def init_widgets_list():
     #                      update_interval = 5,
     #                      background = colors[1]
     #                      ),
-                 #battery option 2  from Qtile
-                #widget.Sep(
-                #         linewidth = 1,
-                #         padding = 10,
-                #         foreground = colors[2],
-                #         background = colors[1]
-               #          ),
-#                 widget.Battery(
+                # battery option 2  from Qtile
+               #                 widget.Battery(
 #                          font="Noto Sans",
 #                          update_interval = 10,
 #                          fontsize = 12,
 #                          foreground = colors[5],
 #                          background = colors[1],
-# 	                     ),
-                widget.TextBox(
-                         font="FontAwesome",
-                         text="  ",
-                         foreground=colors[6],
-                         background=colors[7],
-                         padding = 0,
-                         fontsize=16
-                         ),
+#                        ),
+       #         widget.TextBox(
+        #                 font="FontAwesome",
+         #                text="  ",
+          #               foreground=colors[6],
+           #              background=colors[7],
+            #             padding = 0,
+             #            fontsize=16
+              #           ),
 #                 widget.CPUGraph(
 #                          border_color = colors[2],
 #                          fill_color = colors[8],
@@ -376,48 +391,50 @@ def init_widgets_list():
 #                          core = "all",
 #                          type = "box"
 #                         ),
-               # widget.Sep(
-               #          linewidth = 1,
-               #          padding = 10,
-               #          foreground = colors[2],
-               #          background = colors[1]
-               #          ),
-               # widget.TextBox(
-               #          font="FontAwesome",
-               #          text="  ",
-               #          foreground=colors[4],
-               #          background=colors[1],
-               #          padding = 0,
-               #          fontsize=16
-               #          ),
+                widget.Sep(
+                         linewidth = 1,
+                         padding = 10,
+                         foreground = colors[2],
+                         background = colors[1]
+                         ),
+                widget.TextBox(
+                         font="FontAwesome",
+                         text="  ",
+                         foreground=colors[3],
+                         background=colors[1],
+                         padding = 0,
+                         fontsize=16
+                         ),
                 widget.Memory(
                          font="Noto Sans",
                          format = '{MemUsed}M/{MemTotal}M',
                          update_interval = 1,
                          fontsize = 10,
                          foreground = colors[5],
-                         background = colors[4],
+                         background = colors[6],
                       ),
-               # widget.Sep(
-               #          linewidth = 1,
-               #          padding = 10,
-               #          foreground = colors[2],
-               #          background = colors[1]
-               #          ),
-#                widget.TextBox(
-#                         font="FontAwesome",
-#                         text="  ",
-#                         foreground=colors[3],
-#                         background=colors[1],
-#                         padding = 0,
-#                         fontsize=16
-#                         ),
-              widget.Clock(
-                         foreground = colors[5],
-                         background = colors[9],
-                         fontsize = 12,
-                         format="%Y-%m-%d %H:%M"
+                widget.Sep(
+                         linewidth = 1,
+                         padding = 10,
+                         foreground = colors[2],
+                         background = colors[1]
                          ),
+                widget.TextBox(
+                         font="FontAwesome",
+                         text="  ",
+                         foreground=colors[3],
+                         background=colors[1],
+                         padding = 0,
+                         fontsize=16
+                         ),
+         widget.Clock(
+                        foreground = colors[5],
+                        background = colors[6],
+                        #format="%Y-%m-%d %H:%M",
+                        format="%Y-%m-%d %a %I:%M %p",
+                        font = "TerminessTTF Nerd Font Medium",
+                        fontsize = 13,
+                        ),
                # widget.Sep(
                #          linewidth = 1,
                #          padding = 10,
@@ -562,4 +579,4 @@ auto_fullscreen = True
 
 focus_on_window_activation = "focus" # or smart
 
-wmname = "LG3D"
+wmname = "WEEB"

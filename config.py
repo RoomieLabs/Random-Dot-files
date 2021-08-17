@@ -225,12 +225,12 @@ def init_colors():
             ["#cd1f3f", "#cd1f3f"], # color 1
             ["#c0c5ce", "#c0c5ce"], # color 2
             ["#cc6666", "#cc6666"], # color 3
-            ["#3384d0", "#3384d0"], # color 4
+            ["#ff0370", "#ff0370"], # color 4
             ["#f3f4f5", "#f3f4f5"], # color 5
             ["#cd1f3f", "#cd1f3f"], # color 6
             ["#a6ff00", "#a6ff00"], # color 7
             ["#6790eb", "#6790eb"], # color 8
-            ["#a9a9a9", "#a9a9a9"]] # color 9
+            ["#000000", "#000000"]] # color 9
 
 colors = init_colors()
 
@@ -303,7 +303,7 @@ def init_widgets_list():
                        background = colors[0],
                        padding = 5
                        ),
-              widget.Sep(
+            widget.Sep(
                        linewidth = 0,
                        padding = 6,
                        foreground = colors[0],
@@ -316,20 +316,8 @@ def init_widgets_list():
                        padding = -1,
                        fontsize = 48
                        ),
-             widget.Net(
-                       interface = "enp6s0",
-                       format = '{down} ↓↑ {up}',
-                       foreground = colors[2],
-                       background = colors[4],
-                       padding = 5
-                       ),
-              widget.TextBox(
-                       text = '',
-                       background = colors[4],
-                       foreground = colors[5],
-                       padding = -1,
-                       fontsize = 48
-                       ),
+    
+            
     
               # widget.ThermalSensor(
               #          foreground = colors[2],
@@ -337,50 +325,17 @@ def init_widgets_list():
               #          threshold = 90,
               #          padding = 5
               #          ),
-              widget.TextBox(
-                       text='',
-                       background = colors[5],
-                       foreground = colors[4],
-                       padding = -1,
-                       fontsize = 50
-                       ),
-              widget.TextBox(
-                       text = " ⟳",
-                       padding = -1,
-                       foreground = colors[2],
-                       background = colors[4],
-                       fontsize = 14
-                       ),
-              widget.CheckUpdates(
-                       update_interval = 1800,
-                       distro = "Arch_checkupdates",
-                       display_format = "{updates} Updates",
-                       foreground = colors[2],
-                       mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e sudo pacman -Syu')},
-                       background = colors[4]
-                       ),
-              widget.TextBox(
-                       text = '',
-                       background = colors[4],
-                       foreground = colors[5],
-                       padding = -1,
-                       fontsize = 48
-                       ),
-              
+        
+            
+            
               widget.Memory(
-                       foreground = colors[2],
-                       background = colors[5],
+                       foreground = colors[9],
+                       background = colors[4],
                        mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e htop')},
                        padding = -1
                     
                        ),
-              widget.TextBox(
-                       text='',
-                       background = colors[5],
-                       foreground = colors[4],
-                       padding = -1,
-                       fontsize = 48
-                       ),
+              
              
               widget.TextBox(
                        text = '',
@@ -391,12 +346,12 @@ def init_widgets_list():
                        ),
               widget.TextBox(
                       text = " Vol:",
-                       foreground = colors[2],
+                       foreground = colors[9],
                        background = colors[5],
                        padding = 0
                        ),
               widget.Volume(
-                       foreground = colors[2],
+                       foreground = colors[9],
                        background = colors[5],
                        padding = 5
                        ),
@@ -409,13 +364,13 @@ def init_widgets_list():
                        ),
               widget.CurrentLayoutIcon(
                        custom_icon_paths = [os.path.expanduser("~/.config/qtile/icons")],
-                       foreground = colors[0],
+                       foreground = colors[9],
                        background = colors[4],
                        padding = 0,
                        scale = 0.7
                        ),
               widget.CurrentLayout(
-                       foreground = colors[2],
+                       foreground = colors[9],
                        background = colors[4],
                        padding = 0
                        ),
@@ -427,7 +382,7 @@ def init_widgets_list():
                        fontsize = 48
                        ),
               widget.Clock(
-                       foreground = colors[2],
+                       foreground = colors[9],
                        background = colors[5],
                        format = "%A, %B %d - %H:%M "
                        ),

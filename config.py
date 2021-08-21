@@ -228,8 +228,8 @@ def init_colors():
             ["#ff0370", "#ff0370"], # color 4
             ["#f3f4f5", "#f3f4f5"], # color 5
             ["#cd1f3f", "#cd1f3f"], # color 6
-            ["#a6ff00", "#a6ff00"], # color 7
-            ["#6790eb", "#6790eb"], # color 8
+            ["#00bfff", "#00bfff"], # color 7
+            ["#ebd967", "#ebd967"], # color 8
             ["#000000", "#000000"]] # color 9
 
 colors = init_colors()
@@ -248,7 +248,7 @@ widget_defaults = init_widgets_defaults()
 def init_widgets_list():
     prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
     widgets_list = [
-              widget.Sep(
+            widget.Sep(
                        linewidth = 0,
                        padding = 6,
                        foreground = colors[2],
@@ -266,18 +266,18 @@ def init_widgets_list():
                        background = colors[0]
                        ),
                   widget.GroupBox(font="FontAwesome",
-                        fontsize =16,
+                        fontsize =14,
                         margin_y = 3,
                         margin_x = 0,
                         padding_y = 5,
                         padding_x = 3,
                         borderwidth = 0,
                         disable_drag = True,
-                        active = colors[8],
+                        active = colors[7],
                         inactive = colors[5],
                         rounded = False,
                         highlight_method = "text",
-                        this_current_screen_border = colors[1],
+                        this_current_screen_border = colors[8],
                         foreground = colors[2],
                         background = colors[1]
                         ),
@@ -316,27 +316,27 @@ def init_widgets_list():
                        padding = -1,
                        fontsize = 48
                        ),
-    
-            
-    
+
+
+
               # widget.ThermalSensor(
               #          foreground = colors[2],
               #          background = colors[5],
               #          threshold = 90,
               #          padding = 5
               #          ),
-        
-            
-            
+
+
+
               widget.Memory(
                        foreground = colors[9],
                        background = colors[4],
                        mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e htop')},
                        padding = -1
-                    
+
                        ),
-              
-             
+
+
               widget.TextBox(
                        text = '',
                        background = colors[4],
@@ -389,7 +389,7 @@ def init_widgets_list():
               ]
     return widgets_list
 
-              
+
 
 
 widgets_list = init_widgets_list()

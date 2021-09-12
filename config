@@ -197,9 +197,20 @@ bar {
 
 }
 
+# Gaps
 gaps inner 8
 
-exec --no-startup-id picom 
-exec --no-startup-id nitrogen 
+# Startup apps
+exec --no-startup-id picom
+exec --no-startup-id nitrogen --restore
+
+# Smart borders "Use off to disable"
+smart_borders on
+
+# Keybindings
+bindsym $mod+Shift+b exec brave
+bindsym $mod+Shift+s exec steam
+bindsym $mod+Shift+f exec discord
+bindsym $mod+Shift+v exec vim
 
 

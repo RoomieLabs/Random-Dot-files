@@ -2,8 +2,10 @@
 # You can use this however you please, I dont need nor charge anything in return not even a link to the github repo. If you want to do that you can also do it
 # Some stuff here might not work with the distro you are using, for that try finding first how you download picom/i3 gaps/nitrogen in your main distro.
 
-# i3 config file (v4)
 
+# i3 config file (v4)
+#
+# Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
 
@@ -13,7 +15,7 @@ font pango:monospace 12
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
+#font pango:Source Sans Pro 12
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -102,11 +104,11 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
+set $ws1 "1 "
+set $ws2 "2 "
+set $ws3 "3 "
+set $ws4 "4 "
+set $ws5 "5 "
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
@@ -136,6 +138,10 @@ bindsym $mod+Shift+7 move container to workspace number $ws7
 bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
+ 
+
+
+
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -175,20 +181,31 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
    position top      
-   status_command i3status    
+ #  status_command i3status   
 
 
- colors {
-        background #000000
-        statusline #ffffff
-        separator #666666
+	status_command /usr/bin/bumblebee-status \
+		-m  disk cpu memory battery date time \
+		pasink pasource \
+		-p time.format="%H:%M" \
+		-t iceberg-rainbow
 
-        focused_workspace  #0000ff #285577 #ffffff
-        active_workspace   #0000ff #5f676a #ffffff
-        inactive_workspace #333333 #222222 #888888
-        urgent_workspace   #2f343a #900000 #ffffff
-        binding_mode       #2f343a #900000 #ffffff
-    }
+
+	
+
+
+
+ #colors {
+  #      background #000000
+   #     statusline #bfffffff
+    #    separator #666666
+
+     #   focused_workspace  #0000ff #285577 #ffffff
+      #  active_workspace   #0000ff #5f676a #ffffff
+       # inactive_workspace #333333 #222222 #888888
+        #urgent_workspace   #2f343a #900000 #ffffff
+        #binding_mode       #2f343a #900000 #ffffff
+ #}
 
 
 }
@@ -197,16 +214,40 @@ bar {
 gaps inner 8
 
 # Startup apps
-exec --no-startup-id picom
+exec --no-startup-id picom 
 exec --no-startup-id nitrogen --restore
 
-# Smart borders "Use off to disable"
-smart_borders on
 
-# Keybindings
+# Smart borders "Use off to disable"
+smart_borders on 
+for_window [class=".*"] border pixel 3
+
+# Keybindings 
 bindsym $mod+Shift+b exec brave
-bindsym $mod+Shift+s exec steam
+bindsym $mod+Shift+s exec steam 
 bindsym $mod+Shift+f exec discord
 bindsym $mod+Shift+v exec vim
+bindsym $mod+Shift+p exec pavucontrol
+bindsym $mod+Shift+Return exec pcmanfm 
 
+
+# Set colors from Xresources
+# Change 'color7' and 'color2' to whatever colors you want i3 to use 
+# from the generated scheme.
+# NOTE: The '#f0f0f0' in the lines below is the color i3 will use if
+# it fails to get colors from Xresources.
+set_from_resource $fg i3wm.color7 #f0f0f0
+set_from_resource $bg i3wm.color2 #f0f0f0
+
+# class                 border  backgr. text indicator child_border
+client.focused          $bg     $bg     $fg  $bg       $bg
+client.focused_inactive $bg     $bg     $fg  $bg       $bg
+client.unfocused        $bg     $bg     $fg  $bg       $bg
+client.urgent           $bg     $bg     $fg  $bg       $bg
+client.placeholder      $bg     $bg     $fg  $bg       $bg
+
+client.background       $bg
+
+# PROTIP: You can also dynamically set dmenu's colors this way:
+bindsym $mod+d exec dmenu_run -nb "$fg" -nf "$bg" -sb "$bg" -sf "$fg"
 
